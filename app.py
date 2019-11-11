@@ -79,7 +79,7 @@ def get_survey_data():
 
 
 if __name__ == '__main__':
-    if len(sys.argv[0]) > 0:
-        app.run(host=sys.argv[0])
+    if len(sys.argv) > 1:
+        app.run(sys.argv[1])
     else:
         app.run()
