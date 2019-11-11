@@ -1,6 +1,7 @@
 from flask import Flask, session, render_template, redirect
 from flask_session import Session
 import random
+import sys
 
 app = Flask(__name__, static_folder='static')
 app.secret_key = '123456'
@@ -45,6 +46,7 @@ def end_survey():
         result[method_index] += 1
     with open('./static/result.csv', 'a') as file:
         file.writelines(['%d,%d,%d' % (result[1], result[2], result[3])])
+        file.write('\n')
     if 'number' not in session:
         return redirect('/')
     return render_template('end.html')
@@ -77,4 +79,7 @@ def get_survey_data():
 
 
 if __name__ == '__main__':
-    app.run()
+    if len(sys.argv[0]) > 0:
+        app.run(host=sys.argv[0])
+    else:
+        app.run()
