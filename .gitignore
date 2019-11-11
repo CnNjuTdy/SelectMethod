@@ -1,3 +1,4 @@
 .idea/
 static/
 .DS_Store/
+.flask_session/
